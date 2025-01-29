@@ -6,4 +6,9 @@ class ProductsController < ApplicationController
            each_serializer: Products::Index::ProductsSerializer,
            status: :ok
   end
+
+  def show
+
+    render json: { message: "action show is working" }, status: :ok
+  end
 end
