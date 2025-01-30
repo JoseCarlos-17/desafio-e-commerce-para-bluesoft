@@ -7,6 +7,14 @@ class ShoppingCarProductsController < ApplicationController
            status: :created
   end
 
+  def update
+    shopping_car_product = ShoppingCarProduct.find(params[:id])
+
+    shopping_car_product.update!(shopping_car_product_params)
+
+    head :no_content
+  end
+
   def destroy
     shopping_car_product = ShoppingCarProduct.find(params[:id])
 

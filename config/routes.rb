@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # resources :shopping_cars, only: %i[index] do
   #   get '/products', action: "shopping_cars#products", on: :member
   # end
-  resources :shopping_car_products, only: %i[create destroy]
+  resources :shopping_car_products, only: %i[create destroy update]
 
   # Defines the root path route ("/")
   # root "posts#index"

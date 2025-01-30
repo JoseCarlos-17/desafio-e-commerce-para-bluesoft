@@ -27,6 +27,35 @@ RSpec.describe "ShoppingCarProducts", type: :request do
     end
   end
 
+  describe "PUT#update" do
+    context 'when a product has your quantity updated' do
+      let(:product) { create(:product) }
+      let(:shopping_car) { create(:shopping_car) }
+      let(:shopping_car_product) { create(:shopping_car_product,
+        product_id: product.id, shopping_car_id: shopping_car.id,
+        quantity: 1) }
+      let(:shopping_car_product_update_params) do
+        attributes_for(:shopping_car_product,
+          product_id: product.id,
+          shopping_car_id: shopping_car.id,
+          quantity: 3)
+      end
+      
+      before do
+        product
+        shopping_car
+        shopping_car_product
+
+        put "/shopping_car_products/#{shopping_car_product.id}",
+        params: { shopping_car_product: shopping_car_product_update_params }
+      end
+
+      it 'must return 204 status code' do
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+  end
+
   describe "DELETE#destroy" do
     context 'when a product is removed from the shopping_car' do
       let(:product) { create(:product) }
