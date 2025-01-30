@@ -34,6 +34,10 @@ RSpec.describe "Products", type: :request do
       it 'must return 200 status code' do
         expect(response).to have_http_status(:ok)
       end
+
+      it 'must return the product selected attributes' do
+        expect(json_body).to include(:id, :name, :price)
+      end
     end
   end
 end

@@ -8,7 +8,10 @@ class ProductsController < ApplicationController
   end
 
   def show
+    product = Product.find(params[:id])
 
-    render json: { message: "action show is working" }, status: :ok
+    render json: product,
+           serializer: Products::Show::ProductsSerializer,
+           status: :ok
   end
 end
