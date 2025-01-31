@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require './spec/support/request_helper.rb'
+require './spec/support/request_spec_helper.rb'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -64,6 +65,8 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://rspec.info/features/7-0/rspec-rails
   config.infer_spec_type_from_file_location!
+
+  config.include RequestSpecHelper, type: :request
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!

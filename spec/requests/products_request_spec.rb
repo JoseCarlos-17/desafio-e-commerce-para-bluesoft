@@ -3,12 +3,13 @@ require 'rails_helper'
 RSpec.describe "Products", type: :request do
   describe "GET#index" do
     context 'when some products are listed' do
+      let(:user) { create(:user) }
       let(:products) { create_list(:product, 3) }
 
       before do
         products
 
-        get '/products'
+        get '/products', headers: get_headers(user)
       end
 
       it 'must return 200 status code' do
