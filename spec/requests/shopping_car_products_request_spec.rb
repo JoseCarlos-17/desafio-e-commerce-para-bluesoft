@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "ShoppingCarProducts", type: :request do
+  let(:user) { create(:user) }
   describe "POST#create" do
     context 'when a product is added to user shopping car' do
       let(:product) { create(:product) }
@@ -13,7 +14,7 @@ RSpec.describe "ShoppingCarProducts", type: :request do
         product
         shopping_car
 
-        post '/shopping_car_products',
+        post '/shopping_car_products', headers: get_headers(user),
         params: { shopping_car_product: shopping_car_product_params }
       end
 
@@ -46,7 +47,7 @@ RSpec.describe "ShoppingCarProducts", type: :request do
         shopping_car
         shopping_car_product
 
-        put "/shopping_car_products/#{shopping_car_product.id}",
+        put "/shopping_car_products/#{shopping_car_product.id}", headers: get_headers(user),
         params: { shopping_car_product: shopping_car_product_update_params }
       end
 
@@ -69,7 +70,7 @@ RSpec.describe "ShoppingCarProducts", type: :request do
         shopping_car
         shopping_car_product
 
-        delete "/shopping_car_products/#{shopping_car_product.id}"
+        delete "/shopping_car_products/#{shopping_car_product.id}", headers: get_headers(user)
       end
 
       it 'must return 204 status code' do

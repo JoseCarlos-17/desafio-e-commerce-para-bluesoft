@@ -1,4 +1,6 @@
 class ShoppingCarProductsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     shopping_car_product = ShoppingCarProduct.create!(shopping_car_product_params)
 

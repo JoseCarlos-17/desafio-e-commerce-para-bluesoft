@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Products", type: :request do
+  let(:user) { create(:user) }
   describe "GET#index" do
     context 'when some products are listed' do
       let(:products) { create_list(:product, 3) }
@@ -8,7 +9,7 @@ RSpec.describe "Products", type: :request do
       before do
         products
 
-        get '/products'
+        get '/products', headers: get_headers(user)
       end
 
       it 'must return 200 status code' do
@@ -28,7 +29,7 @@ RSpec.describe "Products", type: :request do
       before do
         product
 
-        get "/products/#{product.id}"
+        get "/products/#{product.id}", headers: get_headers(user)
       end
 
       it 'must return 200 status code' do
