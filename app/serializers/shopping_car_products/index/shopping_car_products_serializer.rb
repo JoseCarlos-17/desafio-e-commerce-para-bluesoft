@@ -1,4 +1,4 @@
-class ShoppingCarProducts::Create::ShoppingCarProductsSerializer < ActiveModel::Serializer
+class ShoppingCarProducts::Index::ShoppingCarProductsSerializer < ActiveModel::Serializer
   attributes :id, :product_name, :quantity, :value, :shopping_car
 
   def product_name

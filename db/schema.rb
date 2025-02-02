@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_31_214904) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_01_145959) do
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_214904) do
   create_table "shopping_cars", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_shopping_cars_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,4 +63,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_214904) do
 
   add_foreign_key "shopping_car_products", "products"
   add_foreign_key "shopping_car_products", "shopping_cars"
+  add_foreign_key "shopping_cars", "users"
 end
