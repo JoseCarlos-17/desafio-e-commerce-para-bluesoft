@@ -20,4 +20,24 @@ RSpec.describe "Products", type: :request do
       end
     end
   end
+
+  describe "GET#show" do
+    context 'when a product is chosed and your details are readed' do
+      let(:product) { create(:product) }
+
+      before do
+        product
+
+        get "/products/#{product.id}"
+      end
+
+      it 'must return 200 status code' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'must return the product selected attributes' do
+        expect(json_body).to include(:id, :name, :price)
+      end
+    end
+  end
 end
