@@ -52,7 +52,6 @@ Endpoints:
 
     status_code: 200 OK
 
-
   Cadastro de Usuário:
     path: "/auth"
     request:
